@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Search, Filter, Edit2, Trash2, ChevronDown } from 'lucide-react';
-
+import CreateInvoiceForm from '@/components/consignment/CreateInvoiceForm';
+import { Modal } from "antd";
 const InvoiceInventoryItems = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('Name A-Z');
   const [selectedItems, setSelectedItems] = useState([]);
   const [showSortDropdown, setShowSortDropdown] = useState(false);
-  
+      const [modal1Open, setModal1Open] = useState(false);
+
   const [inventoryItems, setInventoryItems] = useState([
     {
       id: 1,
@@ -188,7 +190,10 @@ const InvoiceInventoryItems = () => {
             </thead>
             <tbody className="divide-y divide-gray-200">
               {filteredItems.map((item) => (
-                <tr key={item.id} className="hover:bg-gray-50">
+                <tr    onClick={(e) => {
+                                    e.stopPropagation();
+                                    setModal1Open(true);
+                                }} key={item.id} className="hover:bg-gray-50 cursor-pointer">
                   <td className="px-4 py-4">
                     <input
                       type="checkbox"
@@ -250,7 +255,15 @@ const InvoiceInventoryItems = () => {
             </tbody>
           </table>
         </div>
-
+            {/* Modals */}
+            <Modal
+                open={modal1Open}
+                width={700}
+                onCancel={() => setModal1Open(false)}
+                footer={null}
+            >
+                <CreateInvoiceForm/>
+            </Modal>
         {/* Results Info */}
         {filteredItems.length === 0 && (
           <div className="text-center py-8 text-gray-500">
