@@ -19,7 +19,7 @@ const ConsignmentRowOne = () => {
         {
             id: 2,
             icon: <TrendingUp className="w-5 h-5" />,
-            title: "Profit",
+            title: "Success rate",
             value: "$452",
             subtitle: "0 Payments Received . 0 Sales . 0 Invoice",
             bgColor: "bg-green-50",
@@ -28,7 +28,7 @@ const ConsignmentRowOne = () => {
         {
             id: 3,
             icon: <ShoppingCart className="w-5 h-5" />,
-            title: "Paid Sales",
+            title: "Pending Revenue",
             value: "$452",
             subtitle: "0 Payments Received . 0 Sales . 0 Invoice",
             bgColor: "bg-yellow-50",
@@ -37,7 +37,7 @@ const ConsignmentRowOne = () => {
         {
             id: 4,
             icon: <Package className="w-5 h-5" />,
-            title: "Unpaid Sales",
+            title: "Finalized revenue",
             value: "$452",
             subtitle: "0 Payments Received . 0 Sales . 0 Invoice",
             bgColor: "bg-blue-50",
@@ -49,39 +49,33 @@ const ConsignmentRowOne = () => {
     const rightDashboardData = [
         {
             id: 1,
-            title: "Total Sales",
+            title: "Items out",
             subtitle: "August 2020",
             value: "9",
             clickable: false
         },
         {
             id: 2,
-            title: "Performance Statistics",
+            title: "Items sold",
             subtitle: "August 2020--Click For Details",
-            value: null,
-            clickable: true
+            value: "2",
+            clickable: false
         },
         {
             id: 3,
-            title: "Total Unpaid Payments",
+            title: "Items Returned",
             subtitle: "Click For User Breakdown",
-            value: "$4543",
-            clickable: true
+            value: "0",
+            clickable: false
         },
         {
             id: 4,
-            title: "Total Production Cost",
+            title: "Categories",
             subtitle: "Click For Cost Break",
-            value: "$4543",
-            clickable: true
-        },
-        {
-            id: 5,
-            title: "Total Shipping Profit",
-            subtitle: "Revenue From Shipping",
-            value: "$16541",
+            value: "1",
             clickable: false
-        }
+        },
+       
     ];
     return (
         <div className=" ">
@@ -126,7 +120,7 @@ const ConsignmentRowOne = () => {
                     <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center gap-2">
                             <span className="text-2xl text-black"><SalesIcon /></span>
-                            <h2 className="text-xl text-black font-semibold">Sales & customers status</h2>
+                            <h2 className="text-xl text-black font-semibold">Inventory status</h2>
                         </div>
                         <span className="text-sm text-gray-500">
                             📅 Dec 10, 2022 - July 18, 2023
