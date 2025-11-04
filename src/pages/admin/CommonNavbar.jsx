@@ -11,11 +11,11 @@ import {
   PrintIcon,
 } from "@/components/common/icons/CustomIcons";
 import { Title14, Title24 } from "@/components/common/Title";
-import {  Modal } from 'antd';
+import { Modal } from 'antd';
 import CreateNewSale from "@/components/common/CreateNewSale";
 const CommonNavbar = ({ open, setOpen }) => {
   const { pathname } = useLocation();
-const [modal1Open, setModal1Open] = useState(false);
+  const [modal1Open, setModal1Open] = useState(false);
   const title = "Sales Dashboard";
   const subtitle = "Track and manage your business sales performance";
   return (
@@ -74,7 +74,7 @@ const [modal1Open, setModal1Open] = useState(false);
           <PrintIcon />
         </span>
         <span
-        onClick={()=>setModal1Open(true)}
+          onClick={() => setModal1Open(true)}
           className="w-[76px] h-[76px] rounded-[34.5px]  cursor-pointer 
              bg-[#3F59D2] 
              shadow-[0_4px_9.5px_3px_rgba(255,255,255,0.25)] 
@@ -85,7 +85,7 @@ const [modal1Open, setModal1Open] = useState(false);
         </span>
       </div>
 
-        <Modal
+      <Modal
 
         open={modal1Open}
         width={700}
@@ -93,7 +93,7 @@ const [modal1Open, setModal1Open] = useState(false);
         onCancel={() => setModal1Open(false)}
         footer={null}
       >
-      <CreateNewSale/>
+        <CreateNewSale />
       </Modal>
     </div>
   );
