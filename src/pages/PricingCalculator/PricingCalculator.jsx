@@ -1,8 +1,11 @@
+import PrintOptionsGrid from '@/components/PricingCalculatorComponents/PrintOptionsGrid'
 import React from 'react'
 
 const PricingCalculator = () => {
   return (
-    <div>PricingCalculator</div>
+    <div>
+      <PrintOptionsGrid />
+    </div>
   )
 }
 
