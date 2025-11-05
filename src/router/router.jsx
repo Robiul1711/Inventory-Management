@@ -1,10 +1,10 @@
-
 import AdminLayout from "@/layout/AdminLayout";
 import ArtInventory from "@/pages/art/ArtInventory";
 import ConsignmentManager from "@/pages/Consignment Manager/ConsignmentManager";
 import Dashboard from "@/pages/dashboard/Dashboard";
 import Invoices from "@/pages/Invoices/Invoices";
 import NotFound from "@/pages/NotFound";
+import PricingCalculator from "@/pages/PricingCalculator/PricingCalculator";
 import ProductDatabase from "@/pages/product/ProductDatabase";
 import StockMangement from "@/pages/stock/StockMangement";
 
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/art-inventory",
-        element: <ArtInventory/>, // ✅ Fixed typo
+        element: <ArtInventory />, // ✅ Fixed typo
       },
       {
         path: "/product-database",
@@ -43,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/consignment-manager",
         element: <ConsignmentManager />, // ✅ Fixed typo
+      },
+      {
+        path: "/pricing-calculator",
+        element: <PricingCalculator />, // ✅ Fixed typo
       },
       {
         path: "/invoice",
