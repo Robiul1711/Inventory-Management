@@ -1,12 +1,12 @@
-import ArtCollection from '@/components/art/ArtCollection'
-import React from 'react'
+import ArtCollection from "@/components/art/ArtCollection";
+import React from "react";
 
 const ArtInventory = () => {
   return (
     <div>
-        <ArtCollection/>
+      <ArtCollection />
     </div>
-  )
-}
+  );
+};
 
-export default ArtInventory
+export default ArtInventory;
