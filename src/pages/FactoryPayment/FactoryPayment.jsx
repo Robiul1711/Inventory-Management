@@ -113,7 +113,7 @@ const FactoryPayment = () => {
           <button className="border !border-blue-500 !text-blue-500 px-3 py-1 rounded-lg text-sm">
             Active
           </button>
-          <button className="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm">
+          <button className="bg-blue-500 !text-white px-3 py-1 rounded-lg text-sm">
             Clear filters
           </button>
           <div className="text-gray-400 text-sm flex items-center">0/7</div>

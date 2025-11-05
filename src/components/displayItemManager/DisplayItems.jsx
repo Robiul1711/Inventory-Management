@@ -513,7 +513,7 @@ const DisplayItems = () => {
               <div className="flex gap-3">
                 
                 <button
-                  className="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+                  className="flex-1 px-4 py-2.5 bg-blue-600 !text-white rounded-lg hover:bg-blue-700 font-medium"
                   onClick={handleConfirmSale}
                 >
                   Confirm Sale & Create Invoice
