@@ -1,3 +1,7 @@
+import PrintPriceCalculator from "@/components/PricingCalculatorComponents/PrintPriceCalculator";
+import PrintPricePage from "@/components/PricingCalculatorComponents/PrintPricePage";
+import ShippingForm from "@/components/PricingCalculatorComponents/ShippingForm";
+import SizeCalculator from "@/components/PricingCalculatorComponents/SizeCalculator";
 import AdminLayout from "@/layout/AdminLayout";
 import ArtInventory from "@/pages/art/ArtInventory";
 import ConsignmentManager from "@/pages/Consignment Manager/ConsignmentManager";
@@ -47,6 +51,22 @@ const router = createBrowserRouter([
       {
         path: "/pricing-calculator",
         element: <PricingCalculator />, // ✅ Fixed typo
+      },
+      {
+        path: "/size-calculator",
+        element: <SizeCalculator />, // ✅ Fixed typo
+      },
+      {
+        path: "/print-price",
+        element: <PrintPricePage />, // ✅ Fixed typo
+      },
+      {
+        path: "/print-price-calculator",
+        element: <PrintPriceCalculator />, // ✅ Fixed typo
+      },
+      {
+        path: "/shipping-form",
+        element: <ShippingForm />, // ✅ Fixed typo
       },
       {
         path: "/invoice",
