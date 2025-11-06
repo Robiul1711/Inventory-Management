@@ -13,9 +13,11 @@ import {
 import { Title14, Title24 } from "@/components/common/Title";
 import { Modal } from 'antd';
 import CreateNewSale from "@/components/common/CreateNewSale";
+import ExportCustomersPDF from "@/components/CustomerDatabase/ExportCustomersPDF";
 const CommonNavbar = ({ open, setOpen }) => {
   const { pathname } = useLocation();
   const [modal1Open, setModal1Open] = useState(false);
+  const [exportPdfModal, setExportPdfModal] = useState(false);
   const title = "Sales Dashboard";
   const subtitle = "Track and manage your business sales performance";
   return (
@@ -47,6 +49,7 @@ const CommonNavbar = ({ open, setOpen }) => {
 
       <div className=" flex items-center gap-4">
         <span
+          onClick={() => setExportPdfModal(true)}
           className="w-[76px] h-[76px] rounded-full flex justify-center items-center p-4 cursor-pointer 
              bg-[rgba(255,255,255,0.18)] 
              shadow-[inset_0_1px_6.1px_rgba(0,0,0,0.25)] 
@@ -84,7 +87,16 @@ const CommonNavbar = ({ open, setOpen }) => {
           <PlusIcon />
         </span>
       </div>
+      <Modal
 
+        open={exportPdfModal}
+        width={1000}
+        onOk={() => setExportPdfModal(false)}
+        onCancel={() => setExportPdfModal(false)}
+        footer={null}
+      >
+        <ExportCustomersPDF />
+      </Modal>
       <Modal
 
         open={modal1Open}

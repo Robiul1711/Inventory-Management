@@ -7,6 +7,7 @@ const CustomerDatabase = () => {
     <div>
       <CustomerDatabaseInfo />
       <CustomerDatabaseTable/>
+      
     </div>
   );
 };
