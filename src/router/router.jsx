@@ -9,7 +9,9 @@ import CustomerDatabase from "@/pages/CustomerDatabase/CustomerDatabase";
 
 import Dashboard from "@/pages/dashboard/Dashboard";
 import DisplayItemManager from "@/pages/DisplayItemManager/DisplayItemManager";
+import ExpensesDashboard from "@/pages/ExpensePage/ExpensesDashboard";
 import FactoryPayment from "@/pages/FactoryPayment/FactoryPayment";
+import GalleryDashboard from "@/pages/GalleryList/GalleryDashboard";
 import Invoices from "@/pages/Invoices/Invoices";
 import NotFound from "@/pages/NotFound";
 import PricingCalculator from "@/pages/PricingCalculator/PricingCalculator";
@@ -93,6 +95,14 @@ const router = createBrowserRouter([
       {
         path: "/factory-payments",
         element: <FactoryPayment/>, // ✅ Fixed typo
+      },
+      {
+        path: "/expense",
+        element: <ExpensesDashboard/>, // ✅ Fixed typo
+      },
+      {
+        path: "/galleries-list",
+        element: <GalleryDashboard/>, // ✅ Fixed typo
       },
     ],
   },
