@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { Search, Filter, Edit2, Trash2, ChevronDown } from 'lucide-react';
 import CreateInvoiceForm from '@/components/consignment/CreateInvoiceForm';
 import { Modal } from "antd";
+
 const InvoiceInventoryItems = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('Name A-Z');
   const [selectedItems, setSelectedItems] = useState([]);
   const [showSortDropdown, setShowSortDropdown] = useState(false);
-      const [modal1Open, setModal1Open] = useState(false);
+  const [modal1Open, setModal1Open] = useState(false);
 
   const [inventoryItems, setInventoryItems] = useState([
     {
@@ -16,37 +17,32 @@ const InvoiceInventoryItems = () => {
       product: '7 Species - panels',
       sku: 'The Trendy Table',
       issueDate: "Aug 27,2025",
-      issueDate: "Aug 27,2025",
-      status: 'Paymnet overdue'
+      status: 'Payment overdue'
     },
     {
       id: 2,
-      invoiceId: 'Inv-2109',
-      product: '7 Species - panels',
-      sku: 'The Trendy Table',
-      issueDate: "Aug 27,2025",
-      issueDate: "Aug 27,2025",
-      status: 'Paymnet overdue'
+      invoiceId: 'Inv-2110',
+      product: 'Wooden Desk',
+      sku: 'The Modern Office',
+      issueDate: "Aug 28,2025",
+      status: 'Payment overdue'
     },
     {
       id: 3,
-      invoiceId: 'Inv-2109',
-      product: '7 Species - panels',
-      sku: 'The Trendy Table',
-      issueDate: "Aug 27,2025",
-      issueDate: "Aug 27,2025",
-      status: 'Paymnet overdue'
+      invoiceId: 'Inv-2111',
+      product: 'Dining Table',
+      sku: 'The Trendy Home',
+      issueDate: "Aug 29,2025",
+      status: 'Payment overdue'
     },
     {
       id: 4,
-      invoiceId: 'Inv-2109',
-      product: '7 Species - panels',
-      sku: 'The Trendy Table',
-      issueDate: "Aug 27,2025",
-      issueDate: "Aug 27,2025",
-      status: 'Paymnet overdue'
+      invoiceId: 'Inv-2112',
+      product: 'Glass Panels',
+      sku: 'The Trendy Studio',
+      issueDate: "Aug 30,2025",
+      status: 'Payment overdue'
     },
-
   ]);
 
   const sortOptions = ['Name A-Z', 'Name Z-A', 'SKU', 'Stock Low-High', 'Stock High-Low'];
@@ -81,9 +77,9 @@ const InvoiceInventoryItems = () => {
   const handleSort = (option) => {
     setSortBy(option);
     setShowSortDropdown(false);
-    
+
     let sorted = [...inventoryItems];
-    switch(option) {
+    switch (option) {
       case 'Name A-Z':
         sorted.sort((a, b) => a.product.localeCompare(b.product));
         break;
@@ -93,12 +89,6 @@ const InvoiceInventoryItems = () => {
       case 'SKU':
         sorted.sort((a, b) => a.sku.localeCompare(b.sku));
         break;
-      case 'Stock Low-High':
-        sorted.sort((a, b) => a.inStock - b.inStock);
-        break;
-      case 'Stock High-Low':
-        sorted.sort((a, b) => b.inStock - a.inStock);
-        break;
       default:
         break;
     }
@@ -107,171 +97,172 @@ const InvoiceInventoryItems = () => {
 
   const filteredItems = inventoryItems.filter(item =>
     item.product.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    item.sku.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    item.category.toLowerCase().includes(searchTerm.toLowerCase())
+    item.sku.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
-   
-      <div className="">
-        {/* Header Section */}
-        <div className="mb-6 flex items-center justify-between gap-4">
-          {/* Search Bar */}
-          <div className="flex-1 relative">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            <input
-              type="text"
-              placeholder="Search products by name, SKU, material, or category..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-2.5 border !text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-          </div>
-
-          {/* Sort Dropdown */}
-          <div className="flex items-center gap-3">
-            <span className="text-sm text-gray-700 font-medium">Sort by:</span>
-            <div className="relative">
-              <button
-                onClick={() => setShowSortDropdown(!showSortDropdown)}
-                className="flex items-center gap-2 px-4 py-2.5 border border-gray-300 rounded-lg !text-black hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <span className="text-sm ">{sortBy}</span>
-                <ChevronDown className="w-4 h-4 text-gray-500" />
-              </button>
-              
-              {showSortDropdown && (
-                <div className="absolute right-0 mt-2 w-48 bg-white !text-black border border-gray-200 rounded-lg shadow-lg z-10">
-                  {sortOptions.map((option) => (
-                    <button
-                      key={option}
-                      onClick={() => handleSort(option)}
-                      className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg"
-                    >
-                      {option}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Filter Button */}
-            <button className="flex items-center gap-2 px-4 py-2.5 bg-blue-600 !text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-              <Filter className="w-4 h-4" />
-              <span className="text-sm font-medium !text-white">Filter</span>
-            </button>
-          </div>
+    <div>
+      {/* Header Section */}
+      <div className="mb-6 flex items-center justify-between gap-4">
+        {/* Search Bar */}
+        <div className="flex-1 relative">
+          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+          <input
+            type="text"
+            placeholder="Search products by name, SKU, material, or category..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full pl-12 pr-4 py-2.5 border !text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
         </div>
 
-        {/* Inventory Title */}
-        <h1 className="text-2xl font-bold text-gray-900 mb-6">Inventory items</h1>
+        {/* Sort Dropdown */}
+        <div className="flex items-center gap-3">
+          <span className="text-sm text-gray-700 font-medium">Sort by:</span>
+          <div className="relative">
+            <button
+              onClick={() => setShowSortDropdown(!showSortDropdown)}
+              className="flex items-center gap-2 px-4 py-2.5 border border-gray-300 rounded-lg !text-black hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <span className="text-sm ">{sortBy}</span>
+              <ChevronDown className="w-4 h-4 text-gray-500" />
+            </button>
 
-        {/* Table */}
-        <div className=" rounded-lg border border-gray-200 overflow-hidden">
-          <table className="w-full">
-            <thead className=" border-b border-gray-200">
-              <tr>
-                <th className="w-12 px-4 py-3">
+            {showSortDropdown && (
+              <div className="absolute right-0 mt-2 w-48 bg-white !text-black border border-gray-200 rounded-lg shadow-lg z-10">
+                {sortOptions.map((option) => (
+                  <button
+                    key={option}
+                    onClick={() => handleSort(option)}
+                    className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg"
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Filter Button */}
+          <button className="flex items-center gap-2 px-4 py-2.5 bg-blue-600 !text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <Filter className="w-4 h-4" />
+            <span className="text-sm font-medium !text-white">Filter</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Mark as Read Button (appears when checkbox selected) */}
+      {selectedItems.length > 0 && (
+        <div className="mb-4">
+          <button
+            onClick={() => setModal1Open(true)}
+            className="bg-green-600 !text-white px-4 py-2 rounded-lg font-medium hover:bg-green-700 transition"
+          >
+            Mark as Read
+          </button>
+        </div>
+      )}
+
+      {/* Inventory Title */}
+      <h1 className="text-2xl font-bold text-gray-900 mb-6">Inventory items</h1>
+
+      {/* Table */}
+      <div className="rounded-lg border border-gray-200 overflow-hidden">
+        <table className="w-full">
+          <thead className="border-b border-gray-200">
+            <tr>
+              <th className="w-12 px-4 py-3">
+                <input
+                  type="checkbox"
+                  checked={selectedItems.length === inventoryItems.length && inventoryItems.length > 0}
+                  onChange={handleSelectAll}
+                  className="w-4 h-4 rounded border-gray-300 text-black focus:ring-blue-500"
+                />
+              </th>
+              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Invoice ID</th>
+              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">SKU</th>
+              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Issue date</th>
+              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Stock details</th>
+              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Status</th>
+              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-200">
+            {filteredItems.map((item) => (
+              <tr key={item.id} className="hover:bg-gray-50 cursor-pointer">
+                <td className="px-4 py-4">
                   <input
                     type="checkbox"
-                    checked={selectedItems.length === inventoryItems.length && inventoryItems.length > 0}
-                    onChange={handleSelectAll}
-                    className="w-4 h-4 rounded border-gray-300 text-black focus:ring-blue-500"
+                    checked={selectedItems.includes(item.id)}
+                    onChange={() => handleSelectItem(item.id)}
+                    className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                   />
-                </th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Invoice ID</th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">SKU</th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Issue date</th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Issue date</th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Stock details</th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Status</th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Actions</th>
+                </td>
+                <td className="px-4 py-4 text-black">{item.invoiceId}</td>
+                <td className="px-4 py-4">
+                  <div className="flex flex-col">
+                    <span className="text-sm font-medium text-gray-900">{item.product}</span>
+                  </div>
+                </td>
+                <td className="px-4 py-4">
+                  <span className="text-sm text-gray-900">{item.sku}</span>
+                </td>
+                <td className="px-4 py-4">
+                  <span className="inline-flex px-3 py-1 text-sm font-medium text-blue-700 bg-blue-100 rounded-full">
+                    {item.issueDate}
+                  </span>
+                </td>
+                <td className="px-4 py-4">
+                  <div className="flex flex-col text-sm">
+                    <span className="font-medium text-gray-900">{item.issueDate}</span>
+                  </div>
+                </td>
+                <td className="px-4 py-4">
+                  <span className="inline-flex px-3 py-1 text-sm font-medium text-red-700 bg-red-100 rounded">
+                    {item.status}
+                  </span>
+                </td>
+                <td className="px-4 py-4">
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => handleEdit(item.id)}
+                      className="p-2 !text-gray-600 !hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
+                      title="Edit"
+                    >
+                      <Edit2 className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => handleDelete(item.id)}
+                      className="p-2 !text-gray-600 !hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                      title="Delete"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                </td>
               </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {filteredItems.map((item) => (
-                <tr    onClick={(e) => {
-                                    e.stopPropagation();
-                                    setModal1Open(true);
-                                }} key={item.id} className="hover:bg-gray-50 cursor-pointer">
-                  <td className="px-4 py-4">
-                    <input
-                      type="checkbox"
-                      checked={selectedItems.includes(item.id)}
-                      onChange={() => handleSelectItem(item.id)}
-                      className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 t"
-                    />
-                  </td>
-                  <td className="px-4 py-4 text-black">
-                   
-                      {item.invoiceId}
-                    
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="flex flex-col">
-                      <span className="text-sm font-medium text-gray-900">{item.product}</span>
-                      {/* <span className="text-sm text-gray-500">{item.description}</span> */}
-                    </div>
-                  </td>
-                  <td className="px-4 py-4">
-                    <span className="text-sm text-gray-900">{item.sku}</span>
-                  </td>
-                  <td className="px-4 py-4">
-                    <span className="inline-flex px-3 py-1 text-sm font-medium text-blue-700 bg-blue-100 rounded-full">
-                      {item.issueDate}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="flex flex-col text-sm">
-                      <span className="text-gray-600"> <span className="font-medium text-gray-900">{item.issueDate}</span></span>
-             
-                    </div>
-                  </td>
-                  <td className="px-4 py-4">
-                    <span className="inline-flex px-3 py-1 text-sm font-medium text-red-700 bg-red-100 rounded">
-                      {item.status}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => handleEdit(item.id)}
-                        className="p-2 !text-gray-600 !hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                        title="Edit"
-                      >
-                        <Edit2 className="w-4 h-4" />
-                      </button>
-                      <button
-                        onClick={() => handleDelete(item.id)}
-                        className="p-2 !text-gray-600 !hover:text-red-600 hover:bg-red-50 rounded transition-colors"
-                        title="Delete"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-            {/* Modals */}
-            <Modal
-                open={modal1Open}
-                width={700}
-                onCancel={() => setModal1Open(false)}
-                footer={null}
-            >
-                <CreateInvoiceForm/>
-            </Modal>
-        {/* Results Info */}
-        {filteredItems.length === 0 && (
-          <div className="text-center py-8 text-gray-500">
-            No items found matching your search.
-          </div>
-        )}
+            ))}
+          </tbody>
+        </table>
       </div>
-   
+
+      {/* Modal */}
+      <Modal
+        open={modal1Open}
+        width={1000}
+        onCancel={() => setModal1Open(false)}
+        footer={null}
+      >
+        <CreateInvoiceForm />
+      </Modal>
+
+      {/* No Results */}
+      {filteredItems.length === 0 && (
+        <div className="text-center py-8 text-gray-500">
+          No items found matching your search.
+        </div>
+      )}
+    </div>
   );
 };
 
