@@ -11,15 +11,17 @@ import {
   PrintIcon,
 } from "@/components/common/icons/CustomIcons";
 import { Title14, Title24 } from "@/components/common/Title";
-import { Modal } from 'antd';
+import { Modal } from "antd";
 import CreateNewSale from "@/components/common/CreateNewSale";
 import ExportCustomersPDF from "@/components/CustomerDatabase/ExportCustomersPDF";
+import TitleComponent from "./TitleComponent";
+import ArtSellerSearchModal from "../GalleryList/ArtSellerSearchModal";
 const CommonNavbar = ({ open, setOpen }) => {
   const { pathname } = useLocation();
   const [modal1Open, setModal1Open] = useState(false);
+  const [modal2Open, setModal2Open] = useState(false);
   const [exportPdfModal, setExportPdfModal] = useState(false);
-  const title = "Sales Dashboard";
-  const subtitle = "Track and manage your business sales performance";
+
   return (
     <div
       className=" w-full flex items-center gap-5 justify-between p-10 rounded-[16px]"
@@ -36,14 +38,12 @@ const CommonNavbar = ({ open, setOpen }) => {
           <GiHamburgerMenu color="white" size={26} />
         </span>
 
+        <TitleComponent pathname={pathname} />
+
         <div className=" flex gap-4 items-center">
           <span>
             <HeaderIcon />
           </span>
-          <div className=" flex flex-col gap-2">
-            <Title24>{title}</Title24>
-            <Title14>{subtitle}</Title14>
-          </div>
         </div>
       </div>
 
@@ -76,19 +76,31 @@ const CommonNavbar = ({ open, setOpen }) => {
         >
           <PrintIcon />
         </span>
-        <span
-          onClick={() => setModal1Open(true)}
-          className="w-[76px] h-[76px] rounded-[34.5px]  cursor-pointer 
+        {pathname === `/galleries-list` ? (
+          <span
+            onClick={() => setModal2Open(true)}
+            className="w-[76px] h-[76px] rounded-[34.5px]  cursor-pointer 
              bg-[#3F59D2] 
              shadow-[0_4px_9.5px_3px_rgba(255,255,255,0.25)] 
              backdrop-blur-[23.85px] 
              flex items-center justify-center"
-        >
-          <PlusIcon />
-        </span>
+          >
+            <PlusIcon />
+          </span>
+        ) : (
+          <span
+            onClick={() => setModal1Open(true)}
+            className="w-[76px] h-[76px] rounded-[34.5px]  cursor-pointer 
+             bg-[#3F59D2] 
+             shadow-[0_4px_9.5px_3px_rgba(255,255,255,0.25)] 
+             backdrop-blur-[23.85px] 
+             flex items-center justify-center"
+          >
+            <PlusIcon />
+          </span>
+        )}
       </div>
       <Modal
-
         open={exportPdfModal}
         width={1000}
         onOk={() => setExportPdfModal(false)}
@@ -98,7 +110,6 @@ const CommonNavbar = ({ open, setOpen }) => {
         <ExportCustomersPDF />
       </Modal>
       <Modal
-
         open={modal1Open}
         width={700}
         onOk={() => setModal1Open(false)}
@@ -106,6 +117,15 @@ const CommonNavbar = ({ open, setOpen }) => {
         footer={null}
       >
         <CreateNewSale />
+      </Modal>
+      <Modal
+        open={modal2Open}
+        width={700}
+        onOk={() => setModal2Open(false)}
+        onCancel={() => setModal2Open(false)}
+        footer={null}
+      >
+        <ArtSellerSearchModal />
       </Modal>
     </div>
   );

@@ -5,6 +5,8 @@ import { IoLogOutOutline, IoEyeOutline } from "react-icons/io5";
 import { Title12, Title14, Title24 } from "@/components/common/Title";
 import avatar from "@/assets/images/avatar.png";
 import SelectUserModal from "@/components/userSalesPreview/SelectUserModal";
+import Modal from "antd/es/modal/Modal";
+import ProfileEditModal from "./ProfileEditModal";
 
 const SideBar = ({ sidebar, open, setOpen }) => {
   const location = useLocation();
@@ -41,6 +43,8 @@ const SideBar = ({ sidebar, open, setOpen }) => {
   };
 
   const [selectUser, setSelectUser] = useState(false);
+
+  const [profileEdit, setProfileEdit] = useState(false);
 
   return (
     <>
@@ -96,7 +100,21 @@ const SideBar = ({ sidebar, open, setOpen }) => {
                   }}
                 >
                   <IoEyeOutline />
-                  <span onClick={()=>setSelectUser(true)}>User sales page perview</span>
+                  <span onClick={() => setProfileEdit(true)}>
+                    Profile
+                  </span>
+                </div>
+                <div
+                  className="flex items-center gap-2 px-4 py-2 !text-white  transition-colors"
+                  onClick={() => {
+                    setOpen(false);
+                    setUserDropdown(false);
+                  }}
+                >
+                  <IoEyeOutline />
+                  <span onClick={() => setSelectUser(true)}>
+                    User sales page perview
+                  </span>
                 </div>
                 <div
                   className="flex items-center gap-2 px-4 py-2 !text-white  cursor-pointer transition-colors"
@@ -194,6 +212,16 @@ const SideBar = ({ sidebar, open, setOpen }) => {
           setSelectUser={setSelectUser}
         />
       )}
+
+       <Modal
+        open={profileEdit}
+        width={700}
+        onOk={() => setProfileEdit(false)}
+        onCancel={() => setProfileEdit(false)}
+        footer={null}
+      >
+        <ProfileEditModal />
+      </Modal>
     </>
   );
 };
