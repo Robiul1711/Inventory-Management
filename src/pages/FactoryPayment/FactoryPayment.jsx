@@ -75,7 +75,7 @@ const FactoryPayment = () => {
   );
 
   return (
-    <div className="p-6 space-y-6 bg-gray-50 ">
+    <div className="sm:p-4 md:p-6 rounded-2xl space-y-6 sm:bg-gray-50 ">
       {/* --- Top Stats --- */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {/* ... stats cards ... */}
@@ -98,7 +98,7 @@ const FactoryPayment = () => {
       </div>
 
       {/* --- Smart Filter --- */}
-      <div className="bg-white rounded-2xl shadow-sm border p-4 flex items-center justify-between">
+      <div className="bg-white rounded-2xl shadow-sm border p-4 flex flex-col gap-4 sm:flex-row  sm:items-center justify-between">
         {/* ... filter content ... */}
         <div className="flex items-center gap-2">
           <div className="flex items-center justify-center w-8 h-8 bg-blue-50 rounded-full">
@@ -120,79 +120,86 @@ const FactoryPayment = () => {
         </div>
       </div>
 
-      {/* --- Factory Order Table --- */}
-      <div className="bg-white rounded-2xl shadow-sm border p-6">
-        <h2 className="text-lg font-semibold mb-4">Factory Order</h2>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm text-left text-gray-600">
-            <thead className="bg-gray-100 text-gray-700">
-              <tr>
-                <th className="p-3"></th>
-                <th className="p-3">Date</th>
-                <th className="p-3">Order</th>
-                <th className="p-3">Product Details</th>
-                <th className="p-3">Material</th>
-                <th className="p-3">Cost</th>
-                <th className="p-3">Customer</th>
-                <th className="p-3">Platform</th>
-                <th className="p-3">Status</th>
-                <th className="p-3 text-center">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.map((order, index) => (
-                <tr
-                  key={index}
-                  className="border-b last:border-0 hover:bg-gray-50 relative"
+ {/* --- Factory Order Table --- */}
+<div className="bg-white rounded-2xl shadow-sm border p-4 sm:p-6">
+  <h2 className="text-base sm:text-lg font-semibold mb-4">Factory Order</h2>
+
+  {/* Responsive wrapper */}
+  <div className="overflow-x-auto">
+    <table className="min-w-full text-sm text-left text-gray-600 border-collapse">
+      <thead className="bg-gray-100 text-gray-700">
+        <tr>
+          <th className="p-2 sm:p-3"></th>
+          <th className="p-2 sm:p-3 whitespace-nowrap">Date</th>
+          <th className="p-2 sm:p-3 whitespace-nowrap">Order</th>
+          <th className="p-2 sm:p-3 whitespace-nowrap">Product Details</th>
+          <th className="p-2 sm:p-3 whitespace-nowrap">Material</th>
+          <th className="p-2 sm:p-3 whitespace-nowrap">Cost</th>
+          <th className="p-2 sm:p-3 whitespace-nowrap">Customer</th>
+          <th className="p-2 sm:p-3 whitespace-nowrap">Platform</th>
+          <th className="p-2 sm:p-3 whitespace-nowrap">Status</th>
+          <th className="p-2 sm:p-3 text-center whitespace-nowrap">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {orders.map((order, index) => (
+          <tr
+            key={index}
+            className="border-b last:border-0 hover:bg-gray-50 transition-colors duration-200"
+          >
+            <td className="p-2 sm:p-3">
+              <input type="checkbox" />
+            </td>
+            <td className="p-2 sm:p-3">{order.date}</td>
+            <td className="p-2 sm:p-3">{order.order}</td>
+            <td className="p-2 sm:p-3">{order.product}</td>
+            <td className="p-2 sm:p-3">
+              <span className="px-2 sm:px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs sm:text-xs">
+                {order.material}
+              </span>
+            </td>
+            <td className="p-2 sm:p-3 font-medium">{order.cost}</td>
+            <td className="p-2 sm:p-3">{order.customer}</td>
+            <td className="p-2 sm:p-3">{order.platform}</td>
+            <td className="p-2 sm:p-3">
+              <span className="px-2 sm:px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs sm:text-xs">
+                {order.status}
+              </span>
+            </td>
+
+            {/* --- Action Buttons --- */}
+            <td className="p-2 sm:p-3 text-right">
+              <div className="flex justify-center items-center gap-2">
+                {/* Edit Button */}
+                <button
+                  onClick={() => showModal(order)}
+                  className="p-2 rounded-md hover:bg-gray-100 text-blue-600"
                 >
-                  <td className="p-3">
-                    <input type="checkbox" />
-                  </td>
-                  <td className="p-3">{order.date}</td>
-                  <td className="p-3">{order.order}</td>
-                  <td className="p-3">{order.product}</td>
-                  <td className="p-3">
-                    <span className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs">
-                      {order.material}
-                    </span>
-                  </td>
-                  <td className="p-3 font-medium">{order.cost}</td>
-                  <td className="p-3">{order.customer}</td>
-                  <td className="p-3">{order.platform}</td>
-                  <td className="p-3">
-                    <span className="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs">
-                      {order.status}
-                    </span>
-                  </td>
+                  <FiEdit size={16} />
+                </button>
 
-                  {/* --- Action Buttons --- */}
-                  <td className="p-3 text-right relative">
-                    <div className="flex justify-center items-center gap-2">
-                      {/* Edit Button (opens MODAL) */}
-                      <button
-                        onClick={() => showModal(order)} // <-- UPDATED
-                        className="p-2 rounded-md hover:bg-gray-100 text-blue-600"
-                      >
-                        <FiEdit size={18} />
-                      </button>
+                {/* Delete Button */}
+                <button
+                  onClick={() => alert("Delete clicked")}
+                  className="p-2 rounded-md hover:bg-gray-100 text-red-500"
+                >
+                  <FiTrash2 size={16} />
+                </button>
+              </div>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
 
-                      {/* Delete Button */}
-                      <button
-                        onClick={() => alert("Delete clicked")}
-                        className="p-2 rounded-md hover:bg-gray-100 text-red-500"
-                      >
-                        <FiTrash2 size={18} />
-                      </button>
-                    </div>
+  {/* --- Mobile Scroll Info --- */}
+  <p className="text-xs text-gray-400 mt-2 sm:hidden text-center">
+    Scroll → to see more columns
+  </p>
+</div>
 
-                    {/* --- Old Dropdown (REMOVED) --- */}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
 
       {/* --- Ant Design Modal --- */}
       {selectedOrder && (

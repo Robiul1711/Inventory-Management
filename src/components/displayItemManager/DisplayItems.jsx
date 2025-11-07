@@ -178,7 +178,7 @@ const DisplayItems = () => {
   };
 
   return (
-    <div className=" bg-gray-50 p-6">
+    <div className=" sm:bg-gray-50 sm:p-6 mt-5">
       <div className="">
         {/* Smart Filter Header */}
         <div className="bg-white rounded-lg mb-6 border border-gray-200">
@@ -213,190 +213,181 @@ const DisplayItems = () => {
         </div>
 
         {/* Display Items List */}
-        <div className="bg-white rounded-lg border border-gray-200">
-          {displayData.map((item, index) => (
-            <div key={item.id} className="border-b border-gray-200 last:border-b-0">
-              {/* Main Row */}
-              <div
-                className="flex items-center p-4 hover:bg-gray-50 cursor-pointer"
-                onClick={() => toggleRow(item.id)}
-              >
-                {/* Checkbox and Expand Icon */}
-                <div className="flex items-center gap-3 w-12">
-                  <input
-                    type="checkbox"
-                    className="w-4 h-4 rounded border-gray-300"
-                    onClick={(e) => e.stopPropagation()}
-                  />
-                  {expandedRow === item.id ? (
-                    <ChevronUp className="w-4 h-4 text-gray-400" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 text-gray-400" />
-                  )}
-                </div>
-
-                {/* Customer Info */}
-                <div className="flex items-center gap-3 flex-1">
-                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                    <span className="text-blue-600 font-semibold text-sm">
-                      {item.customer.name.charAt(0)}
-                    </span>
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-semibold text-gray-900">
-                      {item.customer.name}
-                    </h3>
-                    <p className="text-xs text-gray-500">{item.customer.phone}</p>
-                  </div>
-                </div>
-
-                {/* Gallery Info */}
-                <div className="flex items-center gap-3 flex-1">
-                  <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                    <span className="text-green-600 text-lg">🏛️</span>
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-semibold text-gray-900">
-                      {item.gallery.name}
-                    </h3>
-                    <p className="text-xs text-gray-500">{item.gallery.address}</p>
-                  </div>
-                </div>
-
-                {/* Items Info */}
-                <div className="flex items-center gap-3 flex-1">
-                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                    <span className="text-blue-600 font-semibold text-sm">
-                      {item.items.count}
-                    </span>
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-semibold text-gray-900">
-                      {item.items.count} Item
-                    </h3>
-                    <p className="text-xs text-gray-500">{item.items.totalUnits}</p>
-                    <p className="text-xs text-gray-500">{item.items.date}</p>
-                  </div>
-                </div>
-
-                {/* Status and Actions */}
-                <div className="flex items-center gap-3">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                    {item.status}
-                  </span>
-                  <button
-                    className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <Edit2 className="w-4 h-4 text-gray-600" />
-                  </button>
-                  <button
-                    className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <Trash2 className="w-4 h-4 text-gray-600" />
-                  </button>
-                </div>
-              </div>
-
-              {/* Expanded Product Details */}
-              {expandedRow === item.id && (
-                <div className="bg-gray-50 p-6 border-t border-gray-200">
-                  <h3 className="text-sm font-semibold text-gray-900 mb-4">
-                    Product details
-                  </h3>
-                  <div className="overflow-x-auto">
-                    <table className="w-full">
-                      <thead>
-                        <tr className="border-b border-gray-200">
-                          <th className="text-left py-3 px-4 text-xs font-medium text-gray-600">
-                            <input type="checkbox" className="w-4 h-4 rounded" />
-                          </th>
-                          <th className="text-left py-3 px-4 text-xs font-medium text-gray-600">
-                            Image
-                          </th>
-                          <th className="text-left py-3 px-4 text-xs font-medium text-gray-600">
-                            Product
-                          </th>
-                          <th className="text-left py-3 px-4 text-xs font-medium text-gray-600">
-                            SKU
-                          </th>
-                          <th className="text-left py-3 px-4 text-xs font-medium text-gray-600">
-                            ART Type
-                          </th>
-                          <th className="text-left py-3 px-4 text-xs font-medium text-gray-600">
-                            Quantity
-                          </th>
-                          <th className="text-left py-3 px-4 text-xs font-medium text-gray-600">
-                            DATE ADDED
-                          </th>
-                          <th className="text-left py-3 px-4 text-xs font-medium text-gray-600">
-                            Quantity
-                          </th>
-                          <th className="text-left py-3 px-4 text-xs font-medium text-gray-600">
-                            Actions
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {item.products.map((product) => (
-                          <tr
-                            key={product.id}
-                            className="border-b border-gray-100 bg-white hover:bg-gray-50"
-                          >
-                            <td className="py-3 px-4">
-                              <input type="checkbox" className="w-4 h-4 rounded" />
-                            </td>
-                            <td className="py-3 px-4">
-                              <img
-                                src={product.image}
-                                alt={product.name}
-                                className="w-12 h-12 rounded object-cover"
-                              />
-                            </td>
-                            <td className="py-3 px-4 text-sm text-gray-900">
-                              {product.name}
-                            </td>
-                            <td className="py-3 px-4 text-sm text-gray-900">
-                              {product.sku}
-                            </td>
-                            <td className="py-3 px-4 text-sm text-blue-600 font-medium">
-                              {product.artType}
-                            </td>
-                            <td className="py-3 px-4 text-sm text-gray-900">
-                              {product.quantity}
-                            </td>
-                            <td className="py-3 px-4 text-sm text-gray-900">
-                              {product.dateAdded}
-                            </td>
-                            <td className="py-3 px-4">
-                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                {product.displayStatus}
-                              </span>
-                            </td>
-                            <td className="py-3 px-4">
-                              <div className="flex items-center gap-2">
-                                <button
-                                  className="!text-blue-600 hover:text-blue-800 text-sm font-medium"
-                                  onClick={() => handleMarkAsSold(product, item)}
-                                >
-                                  Marked as sold
-                                </button>
-                                <button className="p-1.5 hover:bg-gray-100 rounded transition-colors">
-                                  <Trash2 className="w-4 h-4 text-gray-600" />
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
+<div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+  {displayData.map((item) => (
+    <div key={item.id} className="border-b border-gray-200 last:border-b-0">
+      {/* ─── Main Row ───────────────────────────── */}
+      <div
+        className="flex flex-wrap sm:flex-nowrap items-center p-4 hover:bg-gray-50 cursor-pointer transition-colors"
+        onClick={() => toggleRow(item.id)}
+      >
+        {/* Checkbox & Expand Icon */}
+        <div className="flex items-center gap-3 w-full sm:w-auto mb-2 sm:mb-0">
+          <input
+            type="checkbox"
+            className="w-4 h-4 rounded border-gray-300"
+            onClick={(e) => e.stopPropagation()}
+          />
+          {expandedRow === item.id ? (
+            <ChevronUp className="w-4 h-4 text-gray-400" />
+          ) : (
+            <ChevronDown className="w-4 h-4 text-gray-400" />
+          )}
         </div>
+
+        {/* Customer Info */}
+        <div className="flex items-center gap-3 flex-1 min-w-[200px] mb-3 sm:mb-0">
+          <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+            <span className="text-blue-600 font-semibold text-sm">
+              {item.customer.name.charAt(0)}
+            </span>
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold text-gray-900 truncate">
+              {item.customer.name}
+            </h3>
+            <p className="text-xs text-gray-500">{item.customer.phone}</p>
+          </div>
+        </div>
+
+        {/* Gallery Info */}
+        <div className="flex items-center gap-3 flex-1 min-w-[200px] mb-3 sm:mb-0">
+          <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+            <span className="text-green-600 text-lg">🏛️</span>
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold text-gray-900 truncate">
+              {item.gallery.name}
+            </h3>
+            <p className="text-xs text-gray-500 truncate">
+              {item.gallery.address}
+            </p>
+          </div>
+        </div>
+
+        {/* Items Info */}
+        <div className="flex items-center gap-3 flex-1 min-w-[180px] mb-3 sm:mb-0">
+          <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+            <span className="text-blue-600 font-semibold text-sm">
+              {item.items.count}
+            </span>
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold text-gray-900">
+              {item.items.count} Item
+            </h3>
+            <p className="text-xs text-gray-500">{item.items.totalUnits}</p>
+            <p className="text-xs text-gray-500">{item.items.date}</p>
+          </div>
+        </div>
+
+        {/* Status & Actions */}
+        <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end">
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+            {item.status}
+          </span>
+          <div className="flex items-center gap-1">
+            <button
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Edit2 className="w-4 h-4 text-gray-600" />
+            </button>
+            <button
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Trash2 className="w-4 h-4 text-gray-600" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* ─── Expanded Product Details ────────────── */}
+      {expandedRow === item.id && (
+        <div className="bg-gray-50 p-4 sm:p-6 border-t border-gray-200">
+          <h3 className="text-sm font-semibold text-gray-900 mb-4">
+            Product details
+          </h3>
+
+          {/* Responsive Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[800px] text-sm">
+              <thead>
+                <tr className="border-b border-gray-200 bg-gray-100">
+                  {[
+                    "",
+                    "Image",
+                    "Product",
+                    "SKU",
+                    "ART Type",
+                    "Quantity",
+                    "Date Added",
+                    "Status",
+                    "Actions",
+                  ].map((header, i) => (
+                    <th
+                      key={i}
+                      className="text-left py-3 px-4 text-xs font-semibold text-gray-700"
+                    >
+                      {header || <input type="checkbox" className="w-4 h-4 rounded" />}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+
+              <tbody>
+                {item.products.map((product) => (
+                  <tr
+                    key={product.id}
+                    className="border-b border-gray-100 bg-white hover:bg-gray-50 transition-colors"
+                  >
+                    <td className="py-3 px-4">
+                      <input type="checkbox" className="w-4 h-4 rounded" />
+                    </td>
+                    <td className="py-3 px-4">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-12 h-12 rounded object-cover"
+                      />
+                    </td>
+                    <td className="py-3 px-4">{product.name}</td>
+                    <td className="py-3 px-4">{product.sku}</td>
+                    <td className="py-3 px-4 text-blue-600 font-medium">
+                      {product.artType}
+                    </td>
+                    <td className="py-3 px-4">{product.quantity}</td>
+                    <td className="py-3 px-4">{product.dateAdded}</td>
+                    <td className="py-3 px-4">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        {product.displayStatus}
+                      </span>
+                    </td>
+                    <td className="py-3 px-4">
+                      <div className="flex items-center gap-2">
+                        <button
+                          className="text-blue-600 hover:text-blue-800 text-xs font-medium"
+                          onClick={() => handleMarkAsSold(product, item)}
+                        >
+                          Mark as sold
+                        </button>
+                        <button className="p-1.5 hover:bg-gray-100 rounded transition">
+                          <Trash2 className="w-4 h-4 text-gray-600" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+    </div>
+  ))}
+</div>
+
       </div>
 
       {/* Mark Display Items as Sold Modal */}

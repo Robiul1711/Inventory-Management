@@ -27,7 +27,7 @@ export default function SizeCalculator() {
         </div>
 
         {/* Main Heading */}
-        <h1 className="text-5xl md:text-6xl text-black font-bold text-center mb-4">
+        <h1 className="text-2xl sm:text-4xl md:text-6xl text-black font-bold text-center mb-4">
           What size do you need?
         </h1>
 
@@ -37,7 +37,7 @@ export default function SizeCalculator() {
         </p>
 
         {/* Calculator Card */}
-        <div className=" rounded-3xl shadow-lg p-8 md:p-12">
+        <div className=" sm:rounded-3xl p-4 sm:shadow-lg sm:p-8 md:p-12">
           {/* Unit Tabs */}
           <div className="flex justify-center mb-12">
             <div className="inline-flex bg-gray-100 rounded-full p-1">
@@ -105,7 +105,7 @@ export default function SizeCalculator() {
           <div className="flex justify-center">
             <Link to='/print-price'
               onClick={handleCalculate}
-              className="px-16 py-4 bg-blue-600 text-white text-lg font-medium rounded-full hover:bg-blue-700 active:scale-95 transition-all shadow-lg hover:shadow-xl"
+              className="px-16 py-3 md:py-4 bg-blue-600 text-white text-lg font-medium rounded-full hover:bg-blue-700 active:scale-95 transition-all shadow-lg hover:shadow-xl"
             >
               Calculate Price
             </Link>

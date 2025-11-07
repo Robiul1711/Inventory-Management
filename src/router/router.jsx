@@ -29,7 +29,7 @@ const router = createBrowserRouter([
     element: <AdminLayout />,
     children: [
       {
-        path: "/dashboard",
+        path: "/",
         element: <Dashboard />, // ✅ Fixed typo
       },
       {

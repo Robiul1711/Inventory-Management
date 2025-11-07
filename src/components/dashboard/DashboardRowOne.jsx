@@ -84,10 +84,10 @@ const DashboardRowOne = () => {
     }
   ];
   return (
- <div className=" ">
-        <div className="grid grid-cols-1 lg:grid-cols-2 bg-[#F4F7FF] gap-6">
+ 
+        <div className="grid grid-cols-1 lg:grid-cols-2 sm:bg-[#F4F7FF] gap-6">
           {/* Left Dashboard */}
-          <div className=" rounded-lg shadow p-6">
+          <div className=" rounded-lg sm:shadow sm:p-6">
             <div className="flex items-center gap-2 mb-6">
               <span className="text-2xl">
                 <DashboardIcon/>
@@ -165,7 +165,7 @@ const DashboardRowOne = () => {
             </div>
           </div>
         </div>
-      </div>
+      
   )
 }
 

@@ -59,20 +59,25 @@ const CustomerDatabaseTable = () => {
   const endItem = Math.min(currentPage * itemsPerPage, 245);
 
   return (
-    <div className=" bg-white p-6">
+    <div className=" sm:bg-white sm:p-6">
       <div className="">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-3">
-            <h1 className="text-xl font-semibold text-gray-900">
-              Customer database
-            </h1>
-            <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm font-medium rounded-md">
-              101 Customers
-            </span>
-          </div>
-          <span className="text-sm text-gray-500">101 OF 101 customer</span>
-        </div>
+{/* Header */}
+<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6 mt-6">
+  {/* Left Section */}
+  <div className="flex flex-wrap items-center gap-3">
+    <h1 className="text-lg sm:text-xl font-semibold text-gray-900">
+      Customer Database
+    </h1>
+    <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm font-medium rounded-md whitespace-nowrap">
+      101 Customers
+    </span>
+  </div>
+
+  {/* Right Section */}
+  <span className="text-xs sm:text-sm text-gray-500 whitespace-nowrap">
+    101 of 101 customers
+  </span>
+</div>
 
         {/* Smart Filter */}
         <div className="bg-white border border-gray-200 rounded-lg mb-6">

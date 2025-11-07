@@ -19,8 +19,8 @@ const AdminLayout = () => {
       id: 1,
       icon: <SalesDashboardIcon />,
       text: "Sales Dashboard",
-      path: "/dashboard", // main path (optional, if you still want to keep it)
-      activePaths: ["/dashboard"], // all paths that should make this item active
+      path: "/", // main path (optional, if you still want to keep it)
+      activePaths: ["/"], // all paths that should make this item active
     },
     {
       id: 2,

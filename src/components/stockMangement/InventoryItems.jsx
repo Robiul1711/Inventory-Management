@@ -124,7 +124,7 @@ const InventoryItems = () => {
    
       <div className="">
         {/* Header Section */}
-        <div className="mb-6 flex items-center justify-between gap-4">
+        <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           {/* Search Bar */}
           <div className="flex-1 relative">
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -174,94 +174,143 @@ const InventoryItems = () => {
 
         {/* Inventory Title */}
         <h1 className="text-2xl font-bold text-gray-900 mb-6">Inventory items</h1>
+{/* ✅ Responsive Table Wrapper */}
+<div className="w-full rounded-lg border border-gray-200 overflow-hidden">
+  <div className="overflow-x-auto">
+    <table className="w-full min-w-[800px] text-sm">
+      {/* Table Head */}
+      <thead className="bg-gray-50 border-b border-gray-200">
+        <tr>
+          <th className="w-12 px-4 py-3">
+            <input
+              type="checkbox"
+              checked={
+                selectedItems.length === inventoryItems.length &&
+                inventoryItems.length > 0
+              }
+              onChange={handleSelectAll}
+              className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+            />
+          </th>
+          <th className="px-4 py-3 text-left font-semibold text-gray-700">
+            Image
+          </th>
+          <th className="px-4 py-3 text-left font-semibold text-gray-700">
+            Product
+          </th>
+          <th className="px-4 py-3 text-left font-semibold text-gray-700">
+            SKU
+          </th>
+          <th className="px-4 py-3 text-left font-semibold text-gray-700">
+            Category
+          </th>
+          <th className="px-4 py-3 text-left font-semibold text-gray-700">
+            Stock Details
+          </th>
+          <th className="px-4 py-3 text-left font-semibold text-gray-700">
+            Status
+          </th>
+          <th className="px-4 py-3 text-left font-semibold text-gray-700">
+            Actions
+          </th>
+        </tr>
+      </thead>
 
-        {/* Table */}
-        <div className=" rounded-lg border border-gray-200 overflow-hidden">
-          <table className="w-full">
-            <thead className=" border-b border-gray-200">
-              <tr>
-                <th className="w-12 px-4 py-3">
-                  <input
-                    type="checkbox"
-                    checked={selectedItems.length === inventoryItems.length && inventoryItems.length > 0}
-                    onChange={handleSelectAll}
-                    className="w-4 h-4 rounded border-gray-300 text-black focus:ring-blue-500"
-                  />
-                </th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Image</th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Product</th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">SKU</th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Category</th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Stock Details</th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Status</th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {filteredItems.map((item) => (
-                <tr key={item.id} className="hover:bg-gray-50">
-                  <td className="px-4 py-4">
-                    <input
-                      type="checkbox"
-                      checked={selectedItems.includes(item.id)}
-                      onChange={() => handleSelectItem(item.id)}
-                      className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 t"
-                    />
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="w-12 h-12 bg-gray-200 rounded flex items-center justify-center text-2xl">
-                      {item.image}
-                    </div>
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="flex flex-col">
-                      <span className="text-sm font-medium text-gray-900">{item.product}</span>
-                      <span className="text-sm text-gray-500">{item.description}</span>
-                    </div>
-                  </td>
-                  <td className="px-4 py-4">
-                    <span className="text-sm text-gray-900">{item.sku}</span>
-                  </td>
-                  <td className="px-4 py-4">
-                    <span className="inline-flex px-3 py-1 text-sm font-medium text-blue-700 bg-blue-100 rounded-full">
-                      {item.category}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="flex flex-col text-sm">
-                      <span className="text-gray-600">Beginning: <span className="font-medium text-gray-900">{item.beginning}</span></span>
-                      <span className="text-gray-600">Sold: <span className="font-medium text-gray-900">{item.sold}</span></span>
-                      <span className="text-gray-600">In stock: <span className="font-medium text-gray-900">{item.inStock}</span></span>
-                    </div>
-                  </td>
-                  <td className="px-4 py-4">
-                    <span className="inline-flex px-3 py-1 text-sm font-medium text-green-700 bg-green-100 rounded">
-                      {item.status}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => handleEdit(item.id)}
-                        className="p-2 !text-gray-600 !hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                        title="Edit"
-                      >
-                        <Edit2 className="w-4 h-4" />
-                      </button>
-                      <button
-                        onClick={() => handleDelete(item.id)}
-                        className="p-2 !text-gray-600 !hover:text-red-600 hover:bg-red-50 rounded transition-colors"
-                        title="Delete"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+      {/* Table Body */}
+      <tbody className="divide-y divide-gray-200">
+        {filteredItems.map((item) => (
+          <tr
+            key={item.id}
+            className="hover:bg-gray-50 transition-colors"
+          >
+            <td className="px-4 py-4">
+              <input
+                type="checkbox"
+                checked={selectedItems.includes(item.id)}
+                onChange={() => handleSelectItem(item.id)}
+                className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              />
+            </td>
+
+            <td className="px-4 py-4">
+              <div className="w-12 h-12 bg-gray-200 rounded flex items-center justify-center text-2xl">
+                {item.image}
+              </div>
+            </td>
+
+            <td className="px-4 py-4">
+              <div className="flex flex-col">
+                <span className="font-medium text-gray-900">
+                  {item.product}
+                </span>
+                <span className="text-gray-500 text-xs sm:text-sm">
+                  {item.description}
+                </span>
+              </div>
+            </td>
+
+            <td className="px-4 py-4 text-gray-900">{item.sku}</td>
+
+            <td className="px-4 py-4">
+              <span className="inline-flex px-3 py-1 text-xs sm:text-sm font-medium text-blue-700 bg-blue-100 rounded-full">
+                {item.category}
+              </span>
+            </td>
+
+            <td className="px-4 py-4 text-sm">
+              <div className="flex flex-col gap-1">
+                <span className="text-gray-600">
+                  Beginning:{" "}
+                  <span className="font-medium text-gray-900">
+                    {item.beginning}
+                  </span>
+                </span>
+                <span className="text-gray-600">
+                  Sold:{" "}
+                  <span className="font-medium text-gray-900">
+                    {item.sold}
+                  </span>
+                </span>
+                <span className="text-gray-600">
+                  In stock:{" "}
+                  <span className="font-medium text-gray-900">
+                    {item.inStock}
+                  </span>
+                </span>
+              </div>
+            </td>
+
+            <td className="px-4 py-4">
+              <span className="inline-flex px-3 py-1 text-xs sm:text-sm font-medium text-green-700 bg-green-100 rounded">
+                {item.status}
+              </span>
+            </td>
+
+            <td className="px-4 py-4">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => handleEdit(item.id)}
+                  className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded transition"
+                  title="Edit"
+                >
+                  <Edit2 className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => handleDelete(item.id)}
+                  className="p-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded transition"
+                  title="Delete"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              </div>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
 
         {/* Results Info */}
         {filteredItems.length === 0 && (

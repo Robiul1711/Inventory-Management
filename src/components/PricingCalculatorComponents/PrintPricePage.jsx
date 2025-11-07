@@ -15,20 +15,20 @@ export default function PrintPricePage() {
         </div>
 
         {/* Main Heading */}
-        <h1 className="text-5xl text-black font-bold text-center mb-4">
+        <h1 className="text-2xl sm:text-4xl md:text-6xl text-black font-bold text-center mb-4">
           Your perfect print price
         </h1>
 
         {/* Product Type */}
-        <p className="text-center text-blue-600 mb-12">
+        <p className="text-center text-blue-600 mb-6 sm:mb-12">
           Acrylic Glasss - 38.2 * 28 in
         </p>
 
         {/* Price Card */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+        <div className="sm:bg-white rounded-2xl sm:shadow-lg sm:p-8 mb-8">
           {/* Price Display */}
           <div className="text-center mb-12">
-            <div className="text-5xl font-bold text-blue-600 mb-2">
+            <div className="text-2xl sm:text-4xl md:text-6xl font-bold text-blue-600 mb-2">
               $99.72
             </div>
             <p className="text-gray-600">

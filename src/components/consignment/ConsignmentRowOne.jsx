@@ -81,7 +81,7 @@ const ConsignmentRowOne = () => {
         <div className=" ">
             <div className="grid grid-cols-1 lg:grid-cols-2 bg-[#F4F7FF] gap-6">
                 {/* Left Dashboard */}
-                <div className=" rounded-lg shadow p-6">
+                <div className=" sm:rounded-lg sm:shadow sm:p-6">
                     <div className="flex items-center gap-2 mb-6 ">
                         <span className="text-2xl  border-black">
                             <DashboardIcon />
@@ -116,8 +116,8 @@ const ConsignmentRowOne = () => {
                 </div>
 
                 {/* Right Dashboard */}
-                <div className="bg-white rounded-lg shadow p-6">
-                    <div className="flex items-center justify-between mb-6">
+                <div className="sm:bg-white sm:rounded-lg sm:shadow sm:p-6 ">
+                    <div className="flex items-center flex-wrap gap-2 justify-between mb-6">
                         <div className="flex items-center gap-2">
                             <span className="text-2xl text-black"><SalesIcon /></span>
                             <h2 className="text-xl text-black font-semibold">Inventory status</h2>

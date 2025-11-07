@@ -17,8 +17,8 @@ export default function PrintPriceCalculator() {
         </div>
 
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-3">
+        <div className="text-center mb-4 sm:mb-8">
+          <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold text-gray-900 mb-3">
             Your perfect print price
           </h1>
           <p className="text-blue-600 text-sm">
@@ -27,10 +27,10 @@ export default function PrintPriceCalculator() {
         </div>
 
         {/* Main Card */}
-        <div className="bg-white rounded-xl shadow-xl p-8">
+        <div className="bg-white rounded-xl sm:shadow-xl p-4 sm:p-8">
           {/* Price Display */}
           <div className="text-center mb-8 pb-8 border-b border-gray-200">
-            <div className="text-5xl font-bold text-blue-600 mb-2">
+            <div className="text-2xl sm:text-4xl md:text-6xl font-bold text-blue-600 mb-2">
               $99.72
             </div>
             <p className="text-gray-600 text-sm">
@@ -97,10 +97,10 @@ export default function PrintPriceCalculator() {
 
           {/* Action Buttons */}
           <div className="flex gap-3">
-            <button className="flex-1 px-6 py-3 bg-gray-200 !text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+            <button className="flex-1 px-6 py-3 bg-gray-200 !text-gray-700 text-sm sm:text-base rounded-lg font-medium hover:bg-gray-300 transition-colors">
               Back to quote
             </button>
-            <Link to="/shipping-form" className="flex-1 px-6 py-3 text-center bg-blue-600 !text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
+            <Link to="/shipping-form" className="flex-1 px-6 py-3 text-center text-sm sm:text-base bg-blue-600 !text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
               Calculator shipping
             </Link>
           </div>

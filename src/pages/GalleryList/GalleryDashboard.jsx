@@ -53,7 +53,7 @@ const InfoCard = ({ title, count, color, icon }) => (
 
 const GalleryDashboard = () => {
   return (
-    <div className="w-full bg-[#F9FAFB] p-6 space-y-6 rounded-2xl">
+    <div className="w-full sm:bg-[#F9FAFB] sm:p-6 space-y-6 sm:rounded-2xl">
       {/* Header cards */}
       <div className="grid sm:grid-cols-3 gap-4">
         <InfoCard
@@ -110,80 +110,77 @@ const GalleryDashboard = () => {
         </div>
       </div>
 
-      {/* Table Section */}
-      <div className="bg-white rounded-xl shadow-sm border overflow-x-auto">
-        <table className="w-full border-collapse text-sm text-gray-700">
-          <thead>
-            <tr className="bg-[#F3F6FA] text-left">
-              <th className="p-3 w-[40px]">
-                <input type="checkbox" />
-              </th>
-              <th className="p-3">Gallery Name</th>
-              <th className="p-3">Owner Name</th>
-              <th className="p-3">City</th>
-              <th className="p-3">State</th>
-              <th className="p-3">Address</th>
-              <th className="p-3">Phone</th>
-              <th className="p-3">Email</th>
-              <th className="p-3">Join Date</th>
-              <th className="p-3">Places Sold</th>
-              <th className="p-3">Note</th>
-              <th className="p-3 text-center">Action</th>
-            </tr>
-          </thead>
+{/* Table Section */}
+<div className="bg-white rounded-xl shadow-sm border overflow-x-auto">
+  <table className="w-full border-collapse text-sm text-gray-700 min-w-[800px]">
+    <thead>
+      <tr className="bg-[#F3F6FA] text-left">
+        <th className="p-3 w-[40px]">
+          <input type="checkbox" />
+        </th>
+        <th className="p-3">Gallery Name</th>
+        <th className="p-3">Owner Name</th>
+        <th className="p-3">City</th>
+        <th className="p-3">State</th>
+        <th className="p-3">Address</th>
+        <th className="p-3">Phone</th>
+        <th className="p-3 truncate max-w-[150px]">Email</th>
+        <th className="p-3">Join Date</th>
+        <th className="p-3">Places Sold</th>
+        <th className="p-3">Note</th>
+        <th className="p-3 text-center">Action</th>
+      </tr>
+    </thead>
 
-          <tbody>
-            {galleries.map((item) => (
-              <tr
-                key={item.id}
-                className="border-t hover:bg-gray-50 transition-colors"
-              >
-                <td className="p-3">
-                  <input type="checkbox" />
-                </td>
-                <td className="p-3 whitespace-nowrap">{item.date}</td>
-                <td className="p-3">{item.owner}</td>
-                <td className="p-3">{item.city}</td>
-                <td className="p-3">{item.state}</td>
-                <td className="p-3">{item.address}</td>
-                <td className="p-3">{item.phone}</td>
-                <td className="p-3 truncate max-w-[150px]">{item.email}</td>
-                <td className="p-3">{item.joinDate}</td>
-                <td className="p-3 flex gap-2">
-                  <span className="bg-yellow-100 text-yellow-700 px-2 py-1 text-xs rounded-md">
-                    Hold
-                  </span>
-                  <span className="bg-green-100 text-green-700 px-2 py-1 text-xs rounded-md">
-                    Sold
-                  </span>
-                </td>
-                <td className="p-3">{item.note}</td>
-                <td className="p-3 flex gap-3 justify-center text-gray-600">
-                  <button className="hover:text-blue-600">
-                    <FiEdit2 />
-                  </button>
-                  <button className="hover:text-red-500">
-                    <FiTrash2 />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <tbody>
+      {galleries.map((item) => (
+        <tr
+          key={item.id}
+          className="border-t hover:bg-gray-50 transition-colors"
+        >
+          <td className="p-3">
+            <input type="checkbox" />
+          </td>
+          <td className="p-3 whitespace-nowrap">{item.date}</td>
+          <td className="p-3">{item.owner}</td>
+          <td className="p-3">{item.city}</td>
+          <td className="p-3">{item.state}</td>
+          <td className="p-3 truncate max-w-[150px]">{item.address}</td>
+          <td className="p-3">{item.phone}</td>
+          <td className="p-3 truncate max-w-[150px]">{item.email}</td>
+          <td className="p-3">{item.joinDate}</td>
+          <td className="p-3 flex gap-2 flex-wrap">
+            <span className="bg-yellow-100 text-yellow-700 px-2 py-1 text-xs rounded-md">
+              Hold
+            </span>
+            <span className="bg-green-100 text-green-700 px-2 py-1 text-xs rounded-md">
+              Sold
+            </span>
+          </td>
+          <td className="p-3 truncate max-w-[120px]">{item.note}</td>
+          <td className="p-3 flex gap-2 justify-center text-gray-600">
+            <button className="hover:text-blue-600">
+              <FiEdit2 />
+            </button>
+            <button className="hover:text-red-500">
+              <FiTrash2 />
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
 
-        {/* Pagination */}
-        <div className="flex justify-between items-center p-3 text-sm text-gray-500 border-t">
-          <span>1–50 of 2313</span>
-          <div className="flex gap-2">
-            <button className="border px-2 py-1 rounded hover:bg-gray-100">
-              ‹
-            </button>
-            <button className="border px-2 py-1 rounded hover:bg-gray-100">
-              ›
-            </button>
-          </div>
-        </div>
-      </div>
+  {/* Pagination */}
+  <div className="flex flex-col sm:flex-row justify-between items-center p-3 text-sm text-gray-500 border-t gap-2 sm:gap-0">
+    <span className="truncate">1–50 of 2313</span>
+    <div className="flex gap-2">
+      <button className="border px-2 py-1 rounded hover:bg-gray-100">‹</button>
+      <button className="border px-2 py-1 rounded hover:bg-gray-100">›</button>
+    </div>
+  </div>
+</div>
+
     </div>
   );
 };

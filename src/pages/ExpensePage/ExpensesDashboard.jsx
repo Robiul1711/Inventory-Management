@@ -47,11 +47,11 @@ const categoryData = [
 
 const ExpensesDashboard = () => {
   return (
-    <div className="w-full p-6 bg-[#F9FAFB] rounded-2xl">
+    <div className="w-full sm:p-6 sm:bg-[#F9FAFB] sm:rounded-2xl">
       {/* Header */}
       <div className="flex items-center gap-2 mb-6">
         <AiOutlineDollarCircle size={30} className="text-[#0D172A]" />
-        <h1 className="text-2xl font-semibold text-[#0D172A]">August 2025 Expenses</h1>
+        <h1 className="text-xl sm:text-2xl font-semibold text-[#0D172A]">August 2025 Expenses</h1>
       </div>
 
       {/* Top Summary Cards */}
@@ -88,7 +88,7 @@ const ExpensesDashboard = () => {
 
       {/* Filter Section */}
       <div className="bg-white rounded-xl p-4 shadow-sm border mb-6">
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col sm:flex-row justify-between gap-3 sm:items-center">
           <div className="flex items-center gap-2 text-[#0D172A]">
             <FaFilter className="text-blue-600" />
             <span className="font-medium">Smart Filter</span>
@@ -107,7 +107,7 @@ const ExpensesDashboard = () => {
       </div>
 
       {/* Category Cards */}
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4">
+      <div className="grid  xl:grid-cols-4 md:grid-cols-2 gap-4">
         {categoryData.map((cat, idx) => (
           <div key={idx} className="bg-white border rounded-xl shadow-sm">
             <div className={`flex justify-between items-center text-white px-4 py-3 rounded-t-xl ${cat.color}`}>

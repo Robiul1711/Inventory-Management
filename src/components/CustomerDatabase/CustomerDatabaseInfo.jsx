@@ -123,7 +123,7 @@ const CustomerDatabaseInfo = () => {
   ];
 
   return (
-    <div className=" bg-gray-50 p-6">
+    <div className=" sm:bg-gray-50 sm:p-6">
       <div className=" space-y-6">
         {/* Top Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -148,106 +148,105 @@ const CustomerDatabaseInfo = () => {
           ))}
         </div>
 
-        {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Top Selling Section */}
-          <div className="bg-white rounded-xl p-6 border border-gray-200">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center">
-                <span className="text-white text-sm">🔥</span>
-              </div>
-              <h2 className="text-lg font-semibold text-gray-900">
-                Top selling
-              </h2>
+ {/* Main Content Grid */}
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+  {/* Top Selling Section */}
+  <div className="bg-white rounded-xl p-6 border border-gray-200">
+    {/* Header */}
+    <div className="flex items-center gap-2 mb-6">
+      <div className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center">
+        <span className="text-white text-sm">🔥</span>
+      </div>
+      <h2 className="text-lg font-semibold text-gray-900">Top Selling</h2>
+    </div>
+
+    {/* Top Selling List */}
+    <div className="space-y-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {topSellingItems.map((item) => (
+        <div
+          key={item.id}
+          className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+        >
+          <div className="flex items-center gap-3 flex-1">
+            <div
+              className={`w-8 h-8 ${item.rankColor} rounded-full flex items-center justify-center text-white font-bold text-sm`}
+            >
+              {item.rank}
             </div>
-
-            <div className="space-y-3 grid grid-cols-2 gap-4">
-              {topSellingItems.map((item, index) => (
-                <div
-                  key={item.id}
-                  className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                >
-                  <div className="flex items-center gap-3 flex-1">
-                    <div
-                      className={`w-8 h-8 ${item.rankColor} rounded-full flex items-center justify-center text-white font-bold text-sm`}
-                    >
-                      {item.rank}
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="text-sm font-semibold text-gray-900">
-                        {item.name}
-                      </h4>
-                      <p className="text-xs text-gray-500">{item.orders}</p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-base font-bold text-gray-900">
-                      {item.price}
-                    </p>
-                    <p className="text-xs text-gray-500">{item.orders}</p>
-                  </div>
-                </div>
-              ))}
-
-              {/* Top Customers in same card */}
-              <div className="pt-4 mt-4 border-t border-gray-200">
-                {topCustomers.map((customer, index) => (
-                  <div
-                    key={customer.id}
-                    className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors mb-3 last:mb-0"
-                  >
-                    <div className="flex items-center gap-3 flex-1">
-                      <div
-                        className={`w-8 h-8 ${customer.rankColor} rounded-full flex items-center justify-center text-white font-bold text-sm`}
-                      >
-                        {customer.rank}
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="text-sm font-semibold text-gray-900">
-                          {customer.name}
-                        </h4>
-                        <p className="text-xs text-gray-500">{customer.orders}</p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-base font-bold text-gray-900">
-                        {customer.amount}
-                      </p>
-                      <p className="text-xs text-gray-500">{customer.orders}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <div className="flex-1">
+              <h4 className="text-sm font-semibold text-gray-900">
+                {item.name}
+              </h4>
+              <p className="text-xs text-gray-500">{item.orders}</p>
             </div>
           </div>
-
-          {/* Summary Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {summaryCards.map((card, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl p-5 border border-gray-200 hover:shadow-md transition-shadow"
-              >
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex-1">
-                    <h3 className="text-sm font-medium text-gray-600 mb-2">
-                      {card.title}
-                    </h3>
-                    <p className={`text-2xl font-bold ${card.valueColor} mb-1`}>
-                      {card.value}
-                    </p>
-                    <p className="text-xs text-gray-500">{card.subtitle}</p>
-                  </div>
-                  <div
-                    className={`w-10 h-10 ${card.iconBg} rounded-lg flex items-center justify-center`}
-                  >
-                    <card.icon className={`w-5 h-5 ${card.iconColor}`} />
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="text-right">
+            <p className="text-base font-bold text-gray-900">{item.price}</p>
+            <p className="text-xs text-gray-500">{item.orders}</p>
           </div>
         </div>
+      ))}
+
+      {/* Top Customers */}
+      <div className="pt-4 mt-4 border-t border-gray-200 sm:col-span-2">
+        {topCustomers.map((customer) => (
+          <div
+            key={customer.id}
+            className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors mb-3 last:mb-0"
+          >
+            <div className="flex items-center gap-3 flex-1">
+              <div
+                className={`w-8 h-8 ${customer.rankColor} rounded-full flex items-center justify-center text-white font-bold text-sm`}
+              >
+                {customer.rank}
+              </div>
+              <div className="flex-1">
+                <h4 className="text-sm font-semibold text-gray-900">
+                  {customer.name}
+                </h4>
+                <p className="text-xs text-gray-500">{customer.orders}</p>
+              </div>
+            </div>
+            <div className="text-right">
+              <p className="text-base font-bold text-gray-900">
+                {customer.amount}
+              </p>
+              <p className="text-xs text-gray-500">{customer.orders}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  {/* Summary Cards Grid */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-4">
+    {summaryCards.map((card, index) => (
+      <div
+        key={index}
+        className="bg-white rounded-xl p-5 border border-gray-200 hover:shadow-md transition-shadow"
+      >
+        <div className="flex items-start justify-between mb-3">
+          <div className="flex-1">
+            <h3 className="text-sm font-medium text-gray-600 mb-2">
+              {card.title}
+            </h3>
+            <p className={`text-2xl font-bold ${card.valueColor} mb-1`}>
+              {card.value}
+            </p>
+            <p className="text-xs text-gray-500">{card.subtitle}</p>
+          </div>
+          <div
+            className={`w-10 h-10 ${card.iconBg} rounded-lg flex items-center justify-center`}
+          >
+            <card.icon className={`w-5 h-5 ${card.iconColor}`} />
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
       </div>
     </div>
   );

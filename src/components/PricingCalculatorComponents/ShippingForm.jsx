@@ -28,14 +28,14 @@ export default function ShippingForm() {
         </div>
 
         {/* Main container */}
-        <div className="bg-white rounded-lg shadow-sm p-8">
+        <div className="bg-white rounded-lg p-4 sm:shadow-sm sm:p-8">
           {/* Header */}
-          <h1 className="text-3xl font-bold text-center mb-2">Where should we ship it?</h1>
+          <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold text-center mb-2">Where should we ship it?</h1>
           <p className="text-center text-blue-600 text-sm mb-8">Acrylic Glosses - 38.2 * 28 in</p>
 
           {/* Price display */}
           <div className="text-center mb-8">
-            <div className="text-4xl font-bold text-blue-600 mb-1">${productPrice + shippingPrice}</div>
+            <div className="text-2xl sm:text-4xl md:text-6xl font-bold text-blue-600 mb-1">${productPrice + shippingPrice}</div>
             <div className="text-gray-500 text-sm">Total price for your acrylic glass</div>
           </div>
 

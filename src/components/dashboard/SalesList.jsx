@@ -205,258 +205,252 @@ const SalesList = () => {
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen p-6">
+    <div className="sm:bg-gray-50 min-h-screen sm:p-6">
       <div className="bg-white rounded-lg">
-        {/* Header */}
-        <div className="p-4 border-b flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <ShoppingCart className="w-5 h-5 text-blue-600" />
-            <h1 className="text-lg font-semibold !text-black !mt-2">Sales List (3)</h1>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-gray-600">
-                Showing 1 to 3 of 3 Sales show:
-              </span>
-              <select className="px-3 py-1 border border-gray-300 !text-black rounded text-sm">
-                <option>50</option>
-                <option>100</option>
-                <option>200</option>
-              </select>
-            </div>
-            {selectedSales.length > 0 && (
-              <button
-                onClick={showMarkAsPaidModal}
-                className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-              >
-                <CheckCircle2 className="w-4 h-4" />
-                Mark as paid
-              </button>
-            )}
+{/* Header */}
+<div className="p-3 sm:p-4 border-b flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+  {/* Left side */}
+  <div className="flex items-center gap-2">
+    <ShoppingCart className="w-5 h-5 text-blue-600" />
+    <h1 className="text-base sm:text-lg font-semibold text-black">
+      Sales List (3)
+    </h1>
+  </div>
 
-            <button className=" !text-black p-3.5 rounded-lg bg-[rgba(112,112,112,0.24)] flex text-center">
-              Already Unpaid
-            </button>
+  {/* Right side */}
+  <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+    <div className="flex items-center flex-wrap gap-2 text-sm">
+      <span className="text-gray-600 whitespace-nowrap">
+        Showing 1 to 3 of 3 Sales show:
+      </span>
+      <select className="px-3 py-1 border border-gray-300 text-gray-900 rounded text-sm">
+        <option>50</option>
+        <option>100</option>
+        <option>200</option>
+      </select>
+    </div>
+
+    {selectedSales.length > 0 && (
+      <button
+        onClick={showMarkAsPaidModal}
+        className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-3 sm:px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+      >
+        <CheckCircle2 className="w-4 h-4" />
+        Mark as paid
+      </button>
+    )}
+
+    <button className="text-black px-3 sm:px-4 py-2 rounded-lg bg-gray-200 text-sm font-medium">
+      Already Unpaid
+    </button>
+  </div>
+</div>
+
+{/* Sales List */}
+<div className="divide-y">
+  {salesData.map((sale, index) => (
+    <div
+      key={index}
+      className={`bg-white ${
+        selectedSales.includes(index) ? "bg-blue-50" : ""
+      }`}
+    >
+      {/* Main Row */}
+      <div className="p-3 sm:p-4 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 overflow-x-auto">
+        <div className="flex items-center gap-3 flex-shrink-0">
+          {/* Checkbox */}
+          <input
+            type="checkbox"
+            checked={selectedSales.includes(index)}
+            onChange={() => handleCheckbox(index)}
+            className="w-4 h-4 text-blue-600 border-gray-300 rounded cursor-pointer"
+          />
+
+          {/* ID Badge */}
+          <div className="bg-gray-800 text-white px-2 py-1 rounded text-xs sm:text-sm font-medium text-center min-w-[50px]">
+            {sale.id}
           </div>
         </div>
 
-        {/* Sales List */}
-        <div className="divide-y">
-          {salesData.map((sale, index) => (
-            <div
-              key={index}
-              className={`bg-white ${
-                selectedSales.includes(index) ? "bg-blue-50" : ""
-              }`}
-            >
-              {/* Main Row */}
-              <div className="p-4 flex items-center gap-4">
-                {/* Checkbox */}
-                <input
-                  type="checkbox"
-                  checked={selectedSales.includes(index)}
-                  onChange={() => handleCheckbox(index)}
-                  className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
-                />
+        {/* Info badges (scrollable on small) */}
+        <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-3 text-xs sm:text-sm">
+          <div className="text-blue-600 font-medium">{sale.date}</div>
 
-                {/* ID Badge */}
-                <div className="bg-gray-800 text-white px-3 py-2 rounded text-sm font-medium min-w-[60px] text-center">
-                  {sale.id}
-                </div>
+          <div className="flex items-center gap-1 bg-green-50 text-green-700 px-2 py-1 rounded font-medium">
+            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+            {sale.type}
+          </div>
 
-                {/* Date */}
-                <div className="text-blue-600 text-sm font-medium min-w-[100px]">
-                  {sale.date}
-                </div>
+          <div className="bg-purple-50 text-purple-700 px-2 py-1 rounded font-medium">
+            {sale.customer}
+          </div>
 
-                {/* Type Badge */}
-                <div className="flex items-center gap-1 bg-green-50 text-green-700 px-3 py-1 rounded text-sm font-medium">
-                  <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                  {sale.type}
-                </div>
+          <div className="bg-blue-50 text-blue-700 px-2 py-1 rounded font-medium">
+            {sale.orderNumber}
+          </div>
 
-                {/* Customer Badge */}
-                <div className="bg-purple-50 text-purple-700 px-3 py-1 rounded text-sm font-medium">
-                  {sale.customer}
-                </div>
+          <div className="bg-blue-100 text-blue-700 px-2 py-1 rounded font-medium">
+            {sale.status}
+          </div>
+        </div>
 
-                {/* Order Number Badge */}
-                <div className="bg-blue-50 text-blue-700 px-3 py-1 rounded text-sm font-medium">
-                  {sale.orderNumber}
-                </div>
+        {/* Spacer */}
+        <div className="flex-1"></div>
 
-                {/* Status Badge */}
-                <div className="bg-blue-100 text-blue-700 px-3 py-1 rounded text-sm font-medium">
-                  {sale.status}
-                </div>
+        {/* Amount */}
+        <div className="text-right min-w-[100px]">
+          <div className="text-green-600 font-semibold text-sm sm:text-base">
+            {sale.amount}
+          </div>
+          <div className="text-gray-500 text-xs">{sale.shipping}</div>
+          <div className="text-gray-500 text-xs">{sale.status}</div>
+        </div>
 
-                {/* Spacer */}
-                <div className="flex-1"></div>
+        {/* Actions */}
+        <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+          <button className="p-1.5 hover:bg-gray-100 rounded">
+            <Plus className="w-4 h-4 text-gray-600" />
+          </button>
+          <button className="p-1.5 hover:bg-gray-100 rounded">
+            <Share2 className="w-4 h-4 text-gray-600" />
+          </button>
+          <button className="p-1.5 hover:bg-gray-100 rounded">
+            <Edit className="w-4 h-4 text-gray-600" />
+          </button>
+          <button className="p-1.5 hover:bg-gray-100 rounded">
+            <Trash2 className="w-4 h-4 text-red-500" />
+          </button>
+        </div>
+      </div>
 
-                {/* Amount */}
-                <div className="text-right min-w-[120px]">
-                  <div className="text-green-600 font-semibold text-base">
-                    {sale.amount}
-                  </div>
-                  <div className="text-gray-500 text-xs">{sale.shipping}</div>
-                  <div className="text-gray-500 text-xs">{sale.status}</div>
-                </div>
+      {/* Expandable Section */}
+      <div className="px-3 sm:px-4 pb-4">
+        <button
+          onClick={() => toggleExpand(index)}
+          className="flex items-center gap-2 text-gray-700 text-sm font-medium hover:text-gray-900"
+        >
+          {expandedSale === index ? (
+            <ChevronDown className="w-4 h-4" />
+          ) : (
+            <ChevronRight className="w-4 h-4" />
+          )}
+          Direct Sale
+        </button>
 
-                {/* Action Icons */}
-                <div className="flex items-center gap-2">
-                  <button className="p-2 hover:bg-gray-100 rounded">
-                    <Plus className="w-5 h-5 text-gray-600" />
-                  </button>
-                  <button className="p-2 hover:bg-gray-100 rounded">
-                    <Share2 className="w-5 h-5 text-gray-600" />
-                  </button>
-                  <button className="p-2 hover:bg-gray-100 rounded">
-                    <Edit className="w-5 h-5 text-gray-600" />
-                  </button>
-                  <button className="p-2 hover:bg-gray-100 rounded">
-                    <Trash2 className="w-5 h-5 text-red-500" />
-                  </button>
-                </div>
-              </div>
+        <div className="text-xs text-gray-500 ml-6 mt-1">
+          {sale.customerDetails}
+        </div>
 
-              {/* Expandable Section */}
-              <div className="px-4 pb-4">
-                <button
-                  onClick={() => toggleExpand(index)}
-                  className="flex items-center gap-2 !text-gray-700 text-sm font-medium  hover:text-gray-900"
-                >
-                  {expandedSale === index ? (
-                    <ChevronDown className="w-4 h-4" />
-                  ) : (
-                    <ChevronRight className="w-4 h-4" />
-                  )}
-                  Direct Sale
-                </button>
+        {expandedSale === index && (
+          <div className="mt-3 ml-4 border-l-4 border-yellow-400 pl-4 overflow-x-auto">
+            <h3 className="text-sm font-semibold text-gray-900 mb-3">
+              Product Sold
+            </h3>
 
-                <div className="text-xs text-gray-500 ml-6 mt-1">
-                  {sale.customerDetails}
-                </div>
-
-                {/* Expanded Content */}
-                {expandedSale === index && (
-                  <div className="mt-4 ml-6 border-l-4 border-yellow-400 pl-4">
-                    <h3 className="text-sm font-semibold text-gray-900 mb-4">
-                      Product Sold
-                    </h3>
-
-                    {/* Product Table */}
-                    <div className="bg-gray-50 rounded-lg overflow-hidden">
-                      <table className="w-full text-sm">
-                        <thead className="bg-gray-100 border-b">
-                          <tr>
-                            <th className="text-left py-3 px-4 font-medium text-gray-700">
-                              Product Code
-                            </th>
-                            <th className="text-left py-3 px-4 font-medium text-gray-700">
-                              Name
-                            </th>
-                            <th className="text-left py-3 px-4 font-medium text-gray-700">
-                              Price/Qty
-                            </th>
-                            <th className="text-right py-3 px-4 font-medium text-gray-700">
-                              Subtotal
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {sale.products.map((product, pIndex) => (
-                            <tr key={pIndex} className="border-b">
-                              <td className="py-3 px-4">
-                                <div className="text-blue-600 font-medium">
-                                  {product.code}
-                                </div>
-                              </td>
-                              <td className="py-3 px-4">
-                                <div className="text-gray-900">
-                                  {product.name}
-                                </div>
-                                <div className="text-gray-500 text-xs">
-                                  {product.variantCode}
-                                </div>
-                              </td>
-                              <td className="py-3 px-4">
-                                <div className="text-gray-900">
-                                  {product.price} * {product.qty}
-                                </div>
-                              </td>
-                              <td className="py-3 px-4 text-right">
-                                <div className="text-gray-900 font-medium">
-                                  {product.subtotal}
-                                </div>
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-
-                      {/* Subtotal */}
-                      <div className="flex justify-end py-3 px-4 border-t bg-white">
-                        <div className="text-sm">
-                          <span className="text-gray-600">Subtotal:</span>
-                          <span className="ml-2 font-semibold text-gray-900">
-                            $315.00
-                          </span>
+            {/* Product Table */}
+            <div className="bg-gray-50 rounded-lg overflow-hidden min-w-[600px]">
+              <table className="w-full text-sm">
+                <thead className="bg-gray-100 border-b">
+                  <tr>
+                    <th className="text-left py-2 px-3 font-medium text-gray-700">
+                      Product Code
+                    </th>
+                    <th className="text-left py-2 px-3 font-medium text-gray-700">
+                      Name
+                    </th>
+                    <th className="text-left py-2 px-3 font-medium text-gray-700">
+                      Price/Qty
+                    </th>
+                    <th className="text-right py-2 px-3 font-medium text-gray-700">
+                      Subtotal
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {sale.products.map((product, pIndex) => (
+                    <tr key={pIndex} className="border-b">
+                      <td className="py-2 px-3 text-blue-600 font-medium">
+                        {product.code}
+                      </td>
+                      <td className="py-2 px-3">
+                        <div className="text-gray-900">{product.name}</div>
+                        <div className="text-gray-500 text-xs">
+                          {product.variantCode}
                         </div>
-                      </div>
-                    </div>
+                      </td>
+                      <td className="py-2 px-3 text-gray-900">
+                        {product.price} × {product.qty}
+                      </td>
+                      <td className="py-2 px-3 text-right text-gray-900 font-medium">
+                        {product.subtotal}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
 
-                    {/* Profit Breakdown */}
-                    <div className="mt-6">
-                      <div className="flex items-center gap-2 mb-3">
-                        <div className="w-5 h-5 bg-gray-800 rounded flex items-center justify-center">
-                          <span className="text-white text-xs">$</span>
-                        </div>
-                        <h3 className="text-sm font-semibold text-gray-900">
-                          Profit Breakdown
-                        </h3>
-                      </div>
-
-                      <div className="space-y-2">
-                        <div className="flex justify-between items-center py-2">
-                          <span className="text-sm text-gray-700">
-                            Revenue:
-                          </span>
-                          <span className="text-sm font-semibold text-green-600">
-                            {sale.profitBreakdown.revenue}
-                          </span>
-                        </div>
-                        <div className="flex justify-between items-center py-2">
-                          <span className="text-sm text-gray-700">
-                            Production Cost
-                          </span>
-                          <span className="text-sm font-semibold text-red-600">
-                            {sale.profitBreakdown.productionCost}
-                          </span>
-                        </div>
-                        <div className="flex justify-between items-center py-2">
-                          <span className="text-sm text-gray-700">
-                            Partner: Yossi Bitton
-                          </span>
-                          <span className="text-sm font-semibold text-red-600">
-                            {sale.profitBreakdown.partnerShare}
-                          </span>
-                        </div>
-                        <div className="flex justify-between items-center py-3 border-t">
-                          <span className="text-sm font-semibold text-blue-600">
-                            My Net Profit
-                          </span>
-                          <span className="text-sm font-bold text-green-600">
-                            {sale.profitBreakdown.netProfit}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
+              {/* Subtotal */}
+              <div className="flex justify-end py-2 px-3 border-t bg-white">
+                <div className="text-sm">
+                  <span className="text-gray-600">Subtotal:</span>
+                  <span className="ml-2 font-semibold text-gray-900">
+                    $315.00
+                  </span>
+                </div>
               </div>
             </div>
-          ))}
-        </div>
+
+            {/* Profit Breakdown */}
+            <div className="mt-4">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-5 h-5 bg-gray-800 rounded flex items-center justify-center">
+                  <span className="text-white text-xs">$</span>
+                </div>
+                <h3 className="text-sm font-semibold text-gray-900">
+                  Profit Breakdown
+                </h3>
+              </div>
+
+              <div className="space-y-1">
+                {[
+                  ["Revenue:", sale.profitBreakdown.revenue, "text-green-600"],
+                  [
+                    "Production Cost:",
+                    sale.profitBreakdown.productionCost,
+                    "text-red-600",
+                  ],
+                  [
+                    "Partner: Yossi Bitton",
+                    sale.profitBreakdown.partnerShare,
+                    "text-red-600",
+                  ],
+                ].map(([label, value, color], i) => (
+                  <div
+                    key={i}
+                    className="flex justify-between items-center py-1 text-sm"
+                  >
+                    <span className="text-gray-700">{label}</span>
+                    <span className={`font-semibold ${color}`}>{value}</span>
+                  </div>
+                ))}
+
+                <div className="flex justify-between items-center py-2 border-t mt-1">
+                  <span className="text-sm font-semibold text-blue-600">
+                    My Net Profit
+                  </span>
+                  <span className="text-sm font-bold text-green-600">
+                    {sale.profitBreakdown.netProfit}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  ))}
+</div>
+
       </div>
 
       {/* Confirmation Modal */}

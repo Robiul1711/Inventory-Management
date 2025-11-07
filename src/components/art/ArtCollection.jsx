@@ -189,7 +189,7 @@ const ArtCollection = () => {
   }, [activeDropdown]);
 
   return (
-    <div className="bg-gray-50 p-6 min-h-screen !text-black">
+    <div className="sm:bg-gray-50 sm:p-6 min-h-screen !text-black">
       <div className="">
         {/* Smart Filter Header */}
         <div
